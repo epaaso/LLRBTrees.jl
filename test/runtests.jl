@@ -15,6 +15,7 @@ facts("Inflate and deflate 5 elements") do
     context("Integrity") do
         @fact tree --> check_height "Not balanced"
         @fact getmaxdepth(tree) == 3 --> true "Max depth does not match"
+        @fact maximum(tree).key == 5 --> true "Maximun does not match"    
 
         listed = orderedpairs(tree)
         i=1
@@ -35,6 +36,11 @@ facts("Inflate and deflate 5 elements") do
             i+=1
         end
         @fact flag --> true "Values correspond to keys"
+
+        tree[1]="z"
+        @fact tree[1] == "z" --> true "Didn't assign new value to key 1"
+        tree[1]="a"
+        @fact tree[1] == "a" --> true "Didn't assign new value to key 1"
 
         flag = true
         for i in 1:5
