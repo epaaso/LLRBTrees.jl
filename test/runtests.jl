@@ -22,12 +22,12 @@ facts("Sample tree") do
     delete!(tree,1)
     @fact tree.root.left.right.key == 1 --> true "Tree didn't delete correctly"
 
-    delete(tree, 4)
+    delete!(tree, 4)
     @fact tree.root.isRed --> false "Tree didn't delete correctly"
 
-    delete(tree, 1)
-    delete(tree, 3)
-    delete(tree, 5)
+    delete!(tree, 1)
+    delete!(tree, 3)
+    delete!(tree, 5)
     @fact typeof(tree.root)==LLRBTrees.TreeLeaf --> true "Tree didn't delete correctly"
 end
 
