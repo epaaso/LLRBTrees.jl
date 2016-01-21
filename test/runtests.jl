@@ -16,7 +16,7 @@ facts("Inflate and deflate 5 elements") do
         @fact tree --> check_height "Not balanced"
         @fact getmaxdepth(tree) == 3 --> true "Max depth does not match"
 
-        listed = inorder(tree)
+        listed = orderedpairs(tree)
         i=1
         flag = true
         for pair = listed
@@ -26,22 +26,25 @@ facts("Inflate and deflate 5 elements") do
         @fact flag --> true "Didn't order correctly"
     end
 
+    context("Structure") do
+        @fact tree.root.left.key == 2 --> true "Tree structure differs from expected in inflation"
+        @fact tree.root.right.key == 5 --> true "Tree structure differs from expected in inflation"
+        @fact tree.root.left.right.key == 3 --> true "Tree structure differs from expected in inflation"
+        @fact tree.root.left.left.key == 1 --> true "Tree structure differs from expected in inflation"
+    end
 
-    @fact tree.root.left.key == 2 --> true "Tree structure differs from expected in inflation"
-    @fact tree.root.right.key == 5 --> true "Tree structure differs from expected in inflation"
-    @fact tree.root.left.right.key == 3 --> true "Tree structure differs from expected in inflation"
-    @fact tree.root.left.left.key == 1 --> true "Tree structure differs from expected in inflation"
+    context("Deflation") do
+        delete!(tree,2)
+        @fact tree.root.left.left.key == 1 --> true "Tree structure differs from expected in deflation"
 
-    delete!(tree,2)
-    @fact tree.root.left.left.key == 1 --> true "Tree structure differs from expected in deflation"
+        delete!(tree, 4)
+        @fact tree.root.isRed --> false "Tree structure differs from expected in deflation"
 
-    delete!(tree, 4)
-    @fact tree.root.isRed --> false "Tree structure differs from expected in deflation"
-
-    delete!(tree, 1)
-    delete!(tree, 3)
-    delete!(tree, 5)
-    @fact typeof(tree.root)==LLRBTrees.TreeLeaf --> true "Tree wasn't empty at the end of deflation"
+        delete!(tree, 1)
+        delete!(tree, 3)
+        delete!(tree, 5)
+        @fact typeof(tree.root)==LLRBTrees.TreeLeaf --> true "Tree wasn't empty at the end of deflation"
+    end
 end
 
 
