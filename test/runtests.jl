@@ -32,6 +32,7 @@ facts("Inflate and deflate 5 elements") do
         i = 1
         for letter = ["a","b","c","d","e"]
             flag = letter == tree[i] ? flag : false
+            i+=1
         end
         @fact flag --> true "Values correspond to keys"
 
