@@ -27,6 +27,21 @@ facts("Inflate and deflate 5 elements") do
     end
 
     context("Structure") do
+
+        flag = true
+        i = 1
+        for letter = ["a","b","c","d","e"]
+            flag = letter == tree[i] ? flag : false
+        end
+        @fact flag --> true "Values correspond to keys"
+
+        flag = true
+        for i in 1:5
+            flag = haskey(tree, i) ? flag : false
+        end
+        @fact flag --> true "All keys are present"
+
+
         @fact tree.root.left.key == 2 --> true "Tree structure differs from expected in inflation"
         @fact tree.root.right.key == 5 --> true "Tree structure differs from expected in inflation"
         @fact tree.root.left.right.key == 3 --> true "Tree structure differs from expected in inflation"
