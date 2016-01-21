@@ -19,8 +19,8 @@ facts("Sample tree") do
     @fact tree.root.left.right.key == 3 --> true "Tree wasn't built correctly"
     @fact tree.root.left.left.key == 1 --> true "Tree wasn't built correctly"
 
-    delete!(tree,1)
-    @fact tree.root.left.right.key == 1 --> true "Tree didn't delete correctly"
+    delete!(tree,2)
+    @fact tree.root.left.left.key == 1 --> true "Tree didn't delete correctly"
 
     delete!(tree, 4)
     @fact tree.root.isRed --> false "Tree didn't delete correctly"
