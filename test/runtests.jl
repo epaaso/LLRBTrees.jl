@@ -15,7 +15,7 @@ facts("Inflate and deflate 5 elements") do
     context("Integrity") do
         @fact tree --> check_height "Not balanced"
         @fact getmaxdepth(tree) == 3 --> true "Max depth does not match"
-        @fact maximum(tree).key == 5 --> true "Maximun does not match"    
+        @fact maximum(tree).key == 5 --> true "Maximun does not match"
 
         listed = orderedpairs(tree)
         i=1
