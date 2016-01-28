@@ -14,11 +14,12 @@ function checktree(tree::LLRBTree, elements::Array{TreeNode,1})
 end
 function randomscenarios(seed::Int=1, scenarios::Int=10, elNum=1000, var=10)
     #Fixed seed for reproducibility if seed=0 then random
-    if(seed==0):
+    if(seed==0)
         seed=rand()
         srand(seed)
-    else:
+    else
         srand(seed)
+    end
 
 
     FactCheck.facts("Test differents scenarios") do
@@ -68,9 +69,9 @@ function randomscenarios(seed::Int=1, scenarios::Int=10, elNum=1000, var=10)
             end
 
 
-            vis=drawtree(tree)
-            img = SVG("test1.svg", 10cm, 10cm)
-            draw(img, vis)
+            #vis=drawtree(tree)
+            #img = SVG("test1.svg", 10cm, 10cm)
+            #draw(img, vis)
 
             FactCheck.context("Remove keys not present") do
                 lower = elNum + 1 + var
@@ -83,9 +84,9 @@ function randomscenarios(seed::Int=1, scenarios::Int=10, elNum=1000, var=10)
                 end
             end
             #println(tree)
-            vis=drawtree(tree)
-            img = SVG("test2.svg", 10cm, 10cm)
-            draw(img, vis)
+            #vis=drawtree(tree)
+            #img = SVG("test2.svg", 10cm, 10cm)
+            #draw(img, vis)
 
             #Remove all keys in random order
             FactCheck.context("Remove all keys") do
