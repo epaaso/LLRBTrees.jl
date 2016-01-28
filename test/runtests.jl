@@ -1,7 +1,8 @@
 using LLRBTrees
 using FactCheck
 
-include("checkheight.jl")
+include("randomscenarios.jl")
+
 
 facts("Inflate and deflate 5 elements") do
 
@@ -68,6 +69,8 @@ facts("Inflate and deflate 5 elements") do
         @fact typeof(tree.root)==LLRBTrees.TreeLeaf --> true "Tree wasn't empty at the end of deflation"
     end
 end
+
+randomscenarios()
 
 
 
