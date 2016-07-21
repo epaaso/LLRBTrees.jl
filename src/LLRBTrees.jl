@@ -315,7 +315,7 @@ end
 push!{K,V}(tree::LLRBTree{K,V}, key::K, value::V) = (tree.root = isdefined(tree, :root)
 ? add_node(tree.root, key, value): TreeNode(key, value); tree.root.isRed=false; tree)
 
-push!{K,V}(tree::LLRBTree{K,V}, node::TreeNode{K,V}) = push!(tree, node.key, node.value)
+push!{K,V}(tree::LLRBTree{K,V}, node::TreeNode{K,V}) = push!(tree, node.key.value, node.value.value)
 
 function populate!{K,V}(tree::LLRBTree{K,V}, N::Int64)
     keys = []
@@ -526,25 +526,25 @@ end
 
 
 #Return an ordered list with recursion
-# function inorder(node::TreePart, list=Any[])
-#   if !isa(node, TreeLeaf)
-#
-#       if !isa(node.left, TreeLeaf)
-#           #("Go down to the left first")
-#           list = inorder(node.left, list)[2]
-#       end
-#
-#       #("Push to the list when leftmost")
-#       push!(list, [node.key, node.value])
-#
-#       if !isa(node.right, TreeLeaf)
-#           #("Go right if no left")
-#           list = inorder(node.right, list)[2]
-#       end
-#   end
-#   #("Go up;  ",node,";  ",list)
-#   return node, list
-# end
-# orderedpairs(tree::LLRBTree) = inorder(tree.root)[2]
+function inorder{K,v}(node::TreeNode{K,V}, list=Any[])
+  if !isleaf(node)
+
+      if !isleftleaf(node)
+          #("Go down to the left first")
+          list = inorder(node.left, list)[2]
+      end
+
+      #("Push to the list when leftmost")
+      push!(list, [node.key.value, node.value.value])
+
+      if !isrightleaf(node)
+          #("Go right if no left")
+          list = inorder(node.right, list)[2]
+      end
+  end
+  #("Go up;  ",node,";  ",list)
+  return node, list
+end
+orderedpairs(tree::LLRBTree) = inorder(tree.root)[2]
 
 end
