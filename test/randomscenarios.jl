@@ -4,7 +4,7 @@ using LLRBTrees
 
 include("checkheight.jl")
 
-function checktree(tree::LLRBTree, elements::Array{TreeNode,1})
+function checktree{K,V}(tree::LLRBTree{K,V}, elements::Array{TreeNode{K,V},1})
 
     FactCheck.@fact tree --> check_height "not balanced"
     #order
@@ -30,28 +30,29 @@ function randomscenarios(seed::Int=1, scenarios::Int=10, elNum=1000, var=10)
             mult = rand(1:var)
             keysmax = rand(mult*elNum:((mult+1)*elNum)+var)
 
-            tree = LLRBTree()
+            tree = LLRBTree{Int, ASCIIString}()
             keys = []
-            elements = TreeNode[]
+            elements = TreeNode{Int, ASCIIString}[]
+
 
             FactCheck.context("Add random values") do
                 for i in 1:nodes
                     key = rand(mult*elNum:keysmax)
                     node = TreeNode(key, string(key) )
-
+                    #println(node)
                     push!(tree, node)
 
                     indexes = Int[]
                     #Remove repeated notes
                     for j in 1:size(elements)[1]
                         nd = elements[j]
-                        if nd.key ==  node.key
+                        if nd.key ==  node.key.value
                             push!(indexes, j)
                         end
                     end
                     deleteat!(elements, indexes) #Remove repeated nodes
                     push!(elements, node)
-                    push!(keys, node.key)
+                    push!(keys, node.key.value)
 
                     checktree(tree, elements)
                 end
@@ -62,8 +63,8 @@ function randomscenarios(seed::Int=1, scenarios::Int=10, elNum=1000, var=10)
                 min = minimum(keys)
                 max = maximum(keys)
                 #FactCheck.@fact_throws KeyException tree[min] "getindex failed"
-                FactCheck.@fact minimum(tree).key == min --> true "Minimum mismatch"
-                FactCheck.@fact maximum(tree).key == max --> true "Maximum mismatch"
+                FactCheck.@fact minimum(tree).key.value == min --> true "Minimum mismatch"
+                FactCheck.@fact maximum(tree).key.value == max --> true "Maximum mismatch"
 
 
             end
@@ -91,7 +92,7 @@ function randomscenarios(seed::Int=1, scenarios::Int=10, elNum=1000, var=10)
             #Remove all keys in random order
             FactCheck.context("Remove all keys") do
                 i=1 #for debugging
-                while( size(elements)[1] > 1 )
+                while( size(elements)[1] > 0 )
                     checktree(tree, elements)
 
                     index = rand(1:size(elements)[1])
@@ -103,12 +104,14 @@ function randomscenarios(seed::Int=1, scenarios::Int=10, elNum=1000, var=10)
                     #draw(img, vis)
                     #i+=1
 
-                    FactCheck.@fact isa(delete!( tree, elements[index].key ), LLRBTree) --> true  "Did not return the tree with deleted node"
+                    FactCheck.@fact isa(delete!( tree, elements[index].key.value ), LLRBTree{Int, ASCIIString}) --> true  "Did not return the tree with deleted node"
                     deleteat!(elements, index)
                     deleteat!(keys, index)
 
 
                 end
+                show(tree)
+                FactCheck.@fact isleaf(tree.root) -->  true "root was not leaf after deleting all keys"
             end
 
         end
