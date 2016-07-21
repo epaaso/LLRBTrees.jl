@@ -5,7 +5,7 @@ module LLRBTrees
 import Base: haskey, getindex, setindex!, delete!, minimum, maximum, push!, show, replace
 
 export TreeNode, LLRBTree, getnodefrom_key, getmaxdepth, orderedpairs, levelorder,
-         populate!, isleftleaf, isrightleaf, ischildleaf, isred
+         populate!, isleftleaf, isrightleaf, ischildleaf, isleaf, isred
 
 type TreeNode{K,V}
     key:: Nullable{K}
