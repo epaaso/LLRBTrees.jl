@@ -223,7 +223,7 @@ function setindex!{K,V}(node::TreeNode{K,V}, value::V, key::K)
         part.value=Nullable(value)
     end
 end
-setindex!{K,V}(tree::LLRBTree{K,V}, key::K) = setindex!(tree.root, key)
+setindex!{K,V}(tree::LLRBTree{K,V}, value::V, key::K) = setindex!(tree.root, value, key)
 
 function rotateleft{K,V}(node::TreeNode{K,V})
 
@@ -526,7 +526,7 @@ end
 
 
 #Return an ordered list with recursion
-function inorder{K,v}(node::TreeNode{K,V}, list=Any[])
+function inorder{K,V}(node::TreeNode{K,V}, list=Any[])
   if !isleaf(node)
 
       if !isleftleaf(node)
