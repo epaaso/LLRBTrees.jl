@@ -138,10 +138,10 @@ function show{K,V}(io::IO, tree::LLRBTree{K,V})
         if(!isnull(tree.root.key))
             stringtree = showR(stringtree, Int(width / 2), 1, Int(width / 4), width, tree.root, " ")
         else
-            stringtree = "No root"
+            stringtree = typeof(tree)
         end
     else
-            stringtree = "No root"
+            stringtree = typeof(tree)
     end
 
     println(io, stringtree)
