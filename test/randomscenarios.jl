@@ -107,10 +107,8 @@ function randomscenarios(seed::Int=1, scenarios::Int=10, elNum=1000, var=10)
                     FactCheck.@fact isa(delete!( tree, elements[index].key.value ), LLRBTree{Int, ASCIIString}) --> true  "Did not return the tree with deleted node"
                     deleteat!(elements, index)
                     deleteat!(keys, index)
-
-
                 end
-                show(tree)
+
                 FactCheck.@fact isleaf(tree.root) -->  true "root was not leaf after deleting all keys"
             end
 
