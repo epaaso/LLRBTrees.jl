@@ -3,12 +3,11 @@
 [![Build Status](https://travis-ci.org/epaaso/LLRBTrees.jl.svg?branch=master)](https://travis-ci.org/epaaso/LLRBTrees.jl)
 [![codecov.io](https://codecov.io/github/epaaso/LLRBTrees.jl/coverage.svg?branch=master)](https://codecov.io/github/epaaso/LLRBTrees.jl?branch=master)
 
-LLRB Tree data structure
-
 Translated from Robert Sedgewicks original
-Source: Sedgewick, R. Left-leaning Red-Black Trees.
 
-A Red-Black Tree structure is an object for accessing ordered-associative arrays in at most 2 log<sub>2</sub>N steps. Where N is the number of elements in the array. Experimentally, this particular design requires on average log<sub>2</sub>N - 0.5 steps for a successful search.
+A Red-Black Tree structure is an object for accessing ordered-associative arrays in at most 2 log<sub>2</sub>N steps. Where N is the number of elements in the array.
+
+Experimentally, this particular design requires on average log<sub>2</sub>N - 0.5 steps for a successful search.
 
 ## Installation
 
@@ -26,7 +25,7 @@ A tree object can be instantiated specifying the types for key and value:
     tree = LLRBTree{Int, ASCIIString}()
 ```
 
-Or by specifying the values of the root>
+Or by specifying the values of the root:
 
 ```julia
     tree = LLRBTree(1,"a")
@@ -66,7 +65,7 @@ tree[2]="now"
 now_r     
 ```
 
-Aside from that there is a method to return an ordered list from the elements in the tree.
+In addition to that, there is a method to return an ordered list from the elements in the tree:
 
 ```julia
 ordereredpairs(tree)
