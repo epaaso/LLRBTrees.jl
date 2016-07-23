@@ -545,6 +545,6 @@ function inorder{K,V}(node::TreeNode{K,V}, list=Any[])
   #("Go up;  ",node,";  ",list)
   return node, list
 end
-orderedpairs(tree::LLRBTree) = inorder(tree.root)[2]
+orderedpairs{K,V}(tree::LLRBTree{K,V}) = inorder(tree.root)[2]
 
 end
