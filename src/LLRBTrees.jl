@@ -215,13 +215,19 @@ end
 getindex{K,V}(tree::LLRBTree{K,V}, key::K) = getindex(tree.root, key)
 
 function setindex!{K,V}(tree::LLRBTree{K,V}, value::V, key::K)
-    part::TreeNode{K,V} = getnodefrom_key(tree.root,key)
+    if(isdefined(tree, :root))
+        part::TreeNode{K,V} = getnodefrom_key(tree.root,key)
+    else
+        part = TreeNode{K,V}()
+    end
 
     if isleaf( part )
         push!(tree, key, value)
     else
         part.value= value
     end
+
+    tree
 end
 
 function rotateleft{K,V}(node::TreeNode{K,V})
