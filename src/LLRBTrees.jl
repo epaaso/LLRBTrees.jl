@@ -214,16 +214,15 @@ end
 
 getindex{K,V}(tree::LLRBTree{K,V}, key::K) = getindex(tree.root, key)
 
-function setindex!{K,V}(node::TreeNode{K,V}, value::V, key::K)
-    part::TreeNode{K,V} = getnodefrom_key(node,key)
-    # Throw a KeyException if the key is not present
+function setindex!{K,V}(tree::LLRBTree{K,V}, value::V, key::K)
+    part::TreeNode{K,V} = getnodefrom_key(tree.root,key)
+
     if isleaf( part )
-        throw(KeyException(key))
+        push!(tree, key, value)
     else
-        part.value=Nullable(value)
+        part.value= value
     end
 end
-setindex!{K,V}(tree::LLRBTree{K,V}, value::V, key::K) = setindex!(tree.root, value, key)
 
 function rotateleft{K,V}(node::TreeNode{K,V})
 
