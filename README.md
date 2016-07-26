@@ -77,3 +77,11 @@ ordereredpairs(tree)
  [15,15]
 
 ```
+
+## Acknowledgements
+Many thanks to David P. Sanders, researcher at UNAM, for tutoring this project.
+And Erik Jimenez for also translating the code.
+
+## Bibliography
+* Sedgewick, R. (2008, April). Left-leaning red-black trees. In Dagstuhl Workshop on Data Structures (p. 17).
+* Robert Sedgewick; Kevin Wayne (21 February 2011). Algorithms. Addison-Wesley Professional. ISBN 978-0-13-276256-4.
