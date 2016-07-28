@@ -277,7 +277,7 @@ function flipcolor!{K,V}(node::TreeNode{K,V})
     if !isrightleaf(node)
         node.right.isRed = !node.right.isRed
     end
-    node
+
 end
 
 function add_node{K,V}(node::TreeNode{K,V}, key::K, value::V)
@@ -362,7 +362,6 @@ function moveredright{K,V}(node::TreeNode{K,V})
         node= rotateright(node)
         flipcolor!(node)
     end
-
     return node
 end
 
