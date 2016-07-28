@@ -238,7 +238,6 @@ function rotateleft{K,V}(node::TreeNode{K,V})
     son=node.right
 
     if !isleftleaf(son)
-        #("assign in between")
         node.right=son.left
     else
         node.right=TreeNode{K,V}()
@@ -249,6 +248,7 @@ function rotateleft{K,V}(node::TreeNode{K,V})
     node.isRed=true
     return son
 end
+
 function rotateright{K,V}(node::TreeNode{K,V})
 
     if isleftleaf(node)
@@ -267,6 +267,7 @@ function rotateright{K,V}(node::TreeNode{K,V})
     node.isRed=true
     return son
 end
+
 function flipcolor!{K,V}(node::TreeNode{K,V})
 
     node.isRed = !node.isRed
@@ -276,6 +277,7 @@ function flipcolor!{K,V}(node::TreeNode{K,V})
     if !isrightleaf(node)
         node.right.isRed = !node.right.isRed
     end
+    node
 end
 
 function add_node{K,V}(node::TreeNode{K,V}, key::K, value::V)
