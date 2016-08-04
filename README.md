@@ -78,9 +78,13 @@ ordereredpairs(tree)
 
 ```
 
+## Visualization
+There is also a separate module, that uses a slight modification of [GraphViz.jl](https://github.com/Keno/GraphViz.jl)
+to make a graph plot of the trees. It can be found in https://github.com/epaaso/LLRBVisualize.jl.
+
 ## Acknowledgements
 Many thanks to David P. Sanders, researcher at UNAM, for tutoring this project.
-And Erik Jimenez for also translating the code.
+Also to Erik Jimenez for also translating the code.
 
 ## Bibliography
 * Sedgewick, R. (2008, April). Left-leaning red-black trees. In Dagstuhl Workshop on Data Structures (p. 17).
