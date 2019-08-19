@@ -4,7 +4,7 @@
 [![codecov.io](https://codecov.io/github/epaaso/LLRBTrees.jl/coverage.svg?branch=master)](https://codecov.io/github/epaaso/LLRBTrees.jl?branch=master)
 
 aaaaaaaaa
-ssssssss
+ssssssssssss
 
 Translated from Robert Sedgewicks original
 
