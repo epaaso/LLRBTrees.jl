@@ -17,6 +17,8 @@ To install run the code:
     Pkg.clone("github.com/epaaso/LLRBTrees.jl")
 ```
 
+This package uses very old julia. But for the spanish-speakers checkout the LLRB Trees explanation in the docs flder.
+
 ## Instantiation
 
 A tree object can be instantiated specifying the types for key and value:
